@@ -43,6 +43,22 @@
 
         {% block content %}
         {{ section.content | safe }}
+        {% set posts = get_section(path="posts/_index.md") %}
+
+        <h2>Latest posts</h2>
+        <ul>
+            {% for page in posts.pages %}
+            {% if loop.index <= 5 %}
+            <li>
+                <a href="{{ page.permalink }}">{{ page.title }}</a>
+                <time datetime="{{ page.date }}">
+                    {{ page.date | date(format="%b %d, %Y") }}
+                </time>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <a href="{{ get_url(path='@/posts/_index.md') }}">All posts →</a>
         {% endblock content %}
     </main>
 

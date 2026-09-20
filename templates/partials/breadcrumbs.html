@@ -1,13 +1,13 @@
 <section class="breadcrumb-container">
-  <a class="breadcrumb-path" href="./">Home</a>
+  <a class="breadcrumb-path" href="{{ get_url(path='/') }}">Home</a>
   {% set current = section | default(value=page) %}
   {% for ancestor in current.ancestors %}
   {% if loop.first %}
   {% continue %}
   {% endif %}
   <span class="breadcrumb-separator"> / </span>
-  {% set section = get_section(path=ancestor) %}
-  <a class="breadcrumb-path" href="{{ section.permalink }}">{{ section.title }}</a>
+  {% set ancestor_section = get_section(path=ancestor) %}
+  <a class="breadcrumb-path" href="{{ ancestor_section.permalink }}">{{ ancestor_section.title }}</a>
   {% endfor %}
   <span class="breadcrumb-separator"> / </span>
   <a class="breadcrumb-path active" href="{{ current.permalink }}">{{ current.title }}</a>
