@@ -5,6 +5,7 @@ $system-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans
   Helvetica, Arial, sans-serif;
 $font-size-small: 14px;
 // $font-size-big: 18px;
+$font-size-toc: 12px;
 // Colors
 // $font-color: #000;
 $background-color: #ececec;
@@ -14,9 +15,18 @@ $background-color-gray: #e0e0e0;
 // $link-color-hover: darkgreen;
 $underline-color: palevioletred;
 // Layout
-$page-width: 700px;
-$sidebar-width: 300px;
-$full-page-width: calc($sidebar-width + $page-width + 1rem);
+$relative-content-width: 60vw;
+$max-content-width: 1000px;
+$content-width: min($relative-content-width, $max-content-width);
+$relative-sidebar-width: 12vw;
+$max-sidebar-width: 300px;
+$sidebar-width: min($relative-sidebar-width, $max-sidebar-width);
+$page-gap: 1rem;
+$page-padding: 1rem;
+$full-page-width: calc(
+  $sidebar-width + $content-width + $sidebar-width + 2*$page-gap + 2*$page-padding
+);
+//$full-page-width: calc($sidebar-width + $page-width + 1rem);
 $mobile-breakpoint: 1050px; // 50rem
 
 //Mixins

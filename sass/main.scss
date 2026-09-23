@@ -2,6 +2,7 @@
 
 @use "vars";
 @use "fonts";
+@use "figure";
 
 * {
     box-sizing: border-box;
@@ -12,17 +13,18 @@ body {
     font-family: vars.$font-family;
     max-width: vars.$full-page-width;
     margin: 0 auto;
-    padding: 1rem;
+    padding: vars.$page-padding;
     display: grid;
-    grid-template-columns: auto 1fr;
+    //grid-template-columns: vars.$sidebar-width vars.$content-width vars.$sidebar-width;
+    grid-template-columns: vars.$sidebar-width minmax(0, 1fr) vars.$sidebar-width;
     grid-template-rows: auto auto 1fr auto;
-    row-gap: 1rem;
-    column-gap: 1rem;
+    row-gap: vars.$page-gap;
+    column-gap: vars.$page-gap;
     grid-template-areas:
-        "sidebar-left main"
-        "sidebar-right main"
-        ". main"
-        ". footer";
+        "sidebar-left main      sidebar-right"
+        ".            main      sidebar-right"
+        ".            main      sidebar-right"
+        ".            footer    .";
 }
 aside#sidebar-left {
     grid-area: sidebar-left;
@@ -37,7 +39,7 @@ aside#sidebar-right {
 
     position: sticky;
     top: 1rem;
-    align-self: auto;
+    align-self: start;
 }
 footer {
     grid-area: footer;
@@ -97,7 +99,7 @@ table td {
 // Table of Contents
 ul.table-of-content {
     list-style-type: circle;
-    font-size: vars.$font-size-small;
+    font-size: vars.$font-size-toc;
     margin-bottom: 0;
     padding-left: 1rem;
     & li {

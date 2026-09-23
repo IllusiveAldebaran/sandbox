@@ -18,6 +18,9 @@ highlight_code = true
 # highlight_theme = "ayu-light"
 
 [extra]
+# KaTeX math rendering, ported from the zola-pickles theme. Use the `katex`
+# component in Markdown content to add math, e.g. {% katex() %}x^2{% end %}.
+katex_enable = true
 internalLinks = [
   { url = "about", name = "About" },
   { url = "posts", name = "Posts" },

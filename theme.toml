@@ -9,3 +9,9 @@ tags = ["Blog"]
 [author]
 name = "Miguel Pimentel"
 homepage = "https://miguelpimentel.do/"
+
+# Any variable here can be overridden by a site's own zola.toml [extra] table.
+[extra]
+# KaTeX math rendering, ported from the zola-pickles theme. Use the `katex`
+# component in Markdown content to add math, e.g. {% katex() %}x^2{% end %}.
+katex_enable = false

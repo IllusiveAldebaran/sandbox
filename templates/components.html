@@ -1,0 +1,18 @@
+{# Components used as shortcodes in Markdown content, e.g. {{ figure(src="...") }}.
+   Ported from the zola-pickles theme. #}
+
+{% component figure(src: string, alt: string = "", link: string = "", title: string = "", border = 0, class: string = "") -%}
+<figure{% if class %} class="{{ class }}"{% endif %}>
+  <a href="{{ link if link else src }}">
+    <img src="{{ src }}"{% if alt %} alt="{{ alt }}"{% endif %}{% if border %} style="border:{{ border }}px solid black"{% endif %} />
+  </a>
+  <figcaption>
+    {%- if title %}<h4>{{ title }}</h4>{% endif %}
+    {{ body | markdown | safe }}
+  </figcaption>
+</figure>
+{%- endcomponent figure %}
+
+{% component katex(block = false) -%}
+<script type="math/tex{% if block %};mode=display{% endif %}">{{ body | trim | safe }}</script>
+{%- endcomponent katex %}
