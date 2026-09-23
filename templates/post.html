@@ -2,7 +2,7 @@
 
 {# Layout for blog posts. #}
 {% block content %}
-<article class="post1">
+<article class="post1"{% if config.extra.search_enable %} data-pagefind-body{% endif %}>
   {# {% include "partials/breadcrumbs.html" %} #}
   <time itemprop="datePublished" datetime="{{ page.date | safe }}">{{ page.date | date(format="%B %e, %Y") | safe }} •
     {{

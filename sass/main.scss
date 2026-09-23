@@ -3,6 +3,7 @@
 @use "vars";
 @use "fonts";
 @use "figure";
+@use "pagefind";
 
 * {
     box-sizing: border-box;
@@ -29,6 +30,9 @@ body {
 aside#sidebar-left {
     grid-area: sidebar-left;
     width: vars.$sidebar-width;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
 }
 main {
     grid-area: main;
@@ -242,6 +246,7 @@ hr {
 // Others
 .site-title {
     margin-top: 0;
+    margin-bottom: 0;
 }
 .site-title-link {
     text-decoration: none;

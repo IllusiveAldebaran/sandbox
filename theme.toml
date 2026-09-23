@@ -15,3 +15,7 @@ homepage = "https://miguelpimentel.do/"
 # KaTeX math rendering, ported from the zola-pickles theme. Use the `katex`
 # component in Markdown content to add math, e.g. {% katex() %}x^2{% end %}.
 katex_enable = false
+
+# Pagefind site search, ported from the zola-pickles theme. Requires a
+# `pagefind --site <output dir>` step after `zola build`; see config.toml.
+search_enable = false

@@ -12,6 +12,11 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/katex.min.js" integrity="sha384-+7Keh381hSkXmXqnjC0JBM/kzsN6TFj+wMKychSLjTvJ8/0ElMde2uKl8i6p6Buj" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.18.7/dist/contrib/mathtex-script-type.min.js" integrity="sha384-W8gaN87yMtPe/iAcxlyIDA8OVOzZvVD4c/HEE6QHhIyo8yHnVSXLzzy+eNWwpivm" crossorigin="anonymous"></script>
   {%- endif %}
+  {% if config.extra.search_enable -%}
+  {#- Pagefind writes these after `zola build` runs; a plain build 404s on them until `pagefind --site <dir>` runs after. #}
+  <link rel="stylesheet" href="{{ get_url(path='pagefind/pagefind-component-ui.css') }}">
+  <script type="module" src="{{ get_url(path='pagefind/pagefind-component-ui.js') }}"></script>
+  {%- endif %}
 </head>
 
 <body>
@@ -19,6 +24,11 @@
     <a class="site-title-link" href="{{ config.base_url | safe }}">
       <h1 class="site-title">{{ config.title }}</h1>
     </a>
+    {#- pagefind-config must come before the trigger/modal — order fixes the bundle path. #}
+    {% if config.extra.search_enable -%}
+    <pagefind-config bundle-path="{{ get_url(path='pagefind/', trailing_slash=true) }}"></pagefind-config>
+    <pagefind-modal-trigger class="pagefind-search"></pagefind-modal-trigger>
+    {%- endif %}
     {% include "partials/sidebar-nav.html" %}
   </aside>
 
@@ -56,6 +66,10 @@
   {% include "partials/footer.html" %}
 
   {% include "partials/go-top.html" %}
+
+  {% if config.extra.search_enable -%}
+  <pagefind-modal></pagefind-modal>
+  {%- endif %}
 </body>
 
 </html>

@@ -1,0 +1,33 @@
+// Ported from the zola-pickles theme's Pagefind integration.
+@use "vars";
+
+// Set here, not :root — Pagefind's own stylesheet loads after ours and
+// redeclares its defaults on :root, so a :root value here would lose.
+pagefind-modal,
+pagefind-modal-trigger {
+  --pf-background: #{vars.$background-color};
+  --pf-hover: #{vars.$background-color-gray};
+  --pf-border-focus: #{vars.$underline-color};
+  --pf-outline-focus: #{vars.$underline-color};
+  --pf-font: #{vars.$font-family};
+  --pf-border-radius: 5px;
+}
+
+.pagefind-search {
+  // Pagefind's `pagefind-modal-trigger` is `display: inline-block` with no
+  // width, so it doesn't reliably shrink to the sidebar — it overflows past
+  // the padding/border instead. Pin it to the content box.
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+dialog.pf-modal::backdrop {
+  backdrop-filter: blur(0.25rem);
+}
+
+// Chromium-only via ::backdrop above; repeated here so every engine locks scroll.
+html:has(pagefind-modal dialog[open]) {
+  overflow: hidden;
+}

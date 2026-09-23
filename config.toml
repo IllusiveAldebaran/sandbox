@@ -21,6 +21,10 @@ highlight_code = true
 # KaTeX math rendering, ported from the zola-pickles theme. Use the `katex`
 # component in Markdown content to add math, e.g. {% katex() %}x^2{% end %}.
 katex_enable = true
+
+# Pagefind site search, ported from the zola-pickles theme.
+#   zola build && pagefind --site public && zola serve
+search_enable = true
 internalLinks = [
   { url = "about", name = "About" },
   { url = "posts", name = "Posts" },
