@@ -1,0 +1,16 @@
+// Zola/pulldown-cmark renders a footnote definition as
+// `<sup class="footnote-definition-label">1</sup><p>...</p>`; the <p> is
+// block-level, so without this it always starts on its own line.
+.footnote-definition {
+  display: flex;
+  gap: 0.4em;
+
+  p {
+    display: inline;
+    margin: 0;
+  }
+}
+
+.footnote-definition-label {
+  font-weight: bold;
+}
